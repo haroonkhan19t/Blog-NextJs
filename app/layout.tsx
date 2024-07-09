@@ -5,13 +5,14 @@ import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
+import { SiteFooter } from "@/components/site-footer";
 
-const inter = Inter({ subsets: ["latin"], variable:"--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
-  metadataBase:new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
 };
 export const viewport: Viewport = {
   themeColor: [
@@ -27,14 +28,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-pt-[5rem]">
-      <body className={cn("min-h-screen bg-background font-sans antialiased",inter.variable)}>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
         <Providers>
-        <div className="relative flex min-h-dvh flex-col bg-background">
-          <main className="flex-1">
-            <SiteHeader/>
-            {children}
-          </main>
-        </div>
+          <div className="relative flex min-h-dvh flex-col bg-background">
+            <main className="flex-1">
+              <SiteHeader />
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+
         </Providers>
       </body>
     </html>
